@@ -1,0 +1,102 @@
+[
+    {
+        "nom": "Mais raisonnons",
+        "cheminImage": "/static/image/quote_analyse/texte_2/0.png",
+        "denomi": 3
+    },
+    {
+        "nom": "un peu",
+        "cheminImage": "/static/image/quote_analyse/texte_2/1.png",
+        "denomi": 2
+    },
+    {
+        "nom": "Mon frère",
+        "cheminImage": "/static/image/quote_analyse/texte_2/2.png",
+        "denomi": 1
+    },
+    {
+        "nom": "Vous nez croyez donc point à la médecine ?",
+        "cheminImage": "/static/image/quote_analyse/texte_2/3.png",
+        "denomi": 2
+    },
+    {
+        "nom": "Non, mon frère, et je ne vois pas que, pour son salut, il soit nécessaire d’y croire. ",
+        "cheminImage": "/static/image/quote_analyse/texte_2/4.png",
+        "denomi": 3
+    },
+    {
+        "nom": "Quoi ?",
+        "cheminImage": "/static/image/quote_analyse/texte_2/5.png",
+        "denomi": 1
+    },
+    {
+        "nom": "vous ne tenez pas véritable une chose établie par tout le monde, et que tous les siècles ont révérée ?",
+        "cheminImage": "/static/image/quote_analyse/texte_2/6.png",
+        "denomi": 2
+    },
+    {
+        "nom": "Bien loin de la tenir véritable, je la trouve, entre nous, une des plus grandes folies qui soit parmi les hommes,  ",
+        "cheminImage": "/static/image/quote_analyse/texte_2/7.png",
+        "denomi": 5
+    },
+    {
+        "nom": "et à regarder les choses en philosophe, ",
+        "cheminImage": "/static/image/quote_analyse/texte_2/8.png",
+        "denomi": 2
+    },
+    {
+        "nom": "Je ne vois point de plus plaisante momerie",
+        "cheminImage": "/static/image/quote_analyse/texte_2/9.png",
+        "denomi": 2
+    },
+    {
+        "nom": "je ne vois rien de plus ridicule qu’un homme qui se veut mêler de guérir un autre. ",
+        "cheminImage": "/static/image/quote_analyse/texte_2/10.png",
+        "denomi": 3
+    },
+    {
+        "nom": "Pourquoi ne voulez-vous pas, mon frère, qu’un homme en puisse guérir un autre ?",
+        "cheminImage": "/static/image/quote_analyse/texte_2/11.png",
+        "denomi": 3
+    },
+    {
+        "nom": "Par la raison, mon frère,",
+        "cheminImage": "/static/image/quote_analyse/texte_2/12.png",
+        "denomi": 2
+    },
+    {
+        "nom": "que les ressorts de notre machine",
+        "cheminImage": "/static/image/quote_analyse/texte_2/13.png",
+        "denomi": 1
+    },
+    {
+        "nom": "sont des mystères, jusques ici, où les hommes ne voient goutte,",
+        "cheminImage": "/static/image/quote_analyse/texte_2/14.png",
+        "denomi": 2
+    },
+    {
+        "nom": "et que la nature nous a mis au-devant des yeux des voiles trop épais pour y connaître quelque chose.",
+        "cheminImage": "/static/image/quote_analyse/texte_2/15.png",
+        "denomi": 3
+    },
+    {
+        "nom": "Le médecins ne savent donc rien, à votre compte ?",
+        "cheminImage": "/static/image/quote_analyse/texte_2/16.png",
+        "denomi": 1
+    },
+    {
+        "nom": "Si fait, mon frère.",
+        "cheminImage": "/static/image/quote_analyse/texte_2/17.png",
+        "denomi": 1
+    },
+    {
+        "nom": "Ils savent la plupart de fort belles humanités, savent parler en beau latin, savent nommer en grec toutes les maladies, les définir et les diviser ;",
+        "cheminImage": "/static/image/quote_analyse/texte_2/18.png",
+        "denomi": 5
+    },
+    {
+        "nom": "mais, pour ce qui est de les guérir c’est ce qu’ils ne savent point du tout.",
+        "cheminImage": "/static/image/quote_analyse/texte_2/19.png",
+        "denomi": 2
+    }
+]
