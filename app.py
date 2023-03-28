@@ -1,10 +1,14 @@
 from flask import Flask
 from flask_assets import Environment, Bundle
 from flask import render_template
+from flask_frozen import Freezer
+
 
 
 app = Flask(__name__, static_url_path='/static')
 assets = Environment(app)
+freezer = Freezer(app)
+
 
 css_main = Bundle('css/style.css', output='gen/main.css')
 css_texte = Bundle('css/style_texte.css', output='gen/main.css')
@@ -42,3 +46,4 @@ def oral_grammaire():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    freezer.freeze()
