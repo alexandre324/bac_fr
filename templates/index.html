@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ma page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% assets 'css_main' %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}">
+    {% endassets %}
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class=" menu">
+                <ul>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="container">
+            <a class="box" href="/oral">
+                <img src="https://www.carrieres-publiques.com/mediatheque/6/8/7/000001786.jpeg" alt="Image 1">
+                <p>Oral</p>
+            </a>
+            <a class="box" href="/ecrit">
+                <img src="https://media-mcetv.ouest-france.fr/wp-content/uploads/2021/05/bac-2021-3-conseils-pour-reussir-son-epreuve-ecrite-de-francais-1-1.jpg"
+                    alt="Image 2">
+                <p>Ecrit</p>
+            </a>
+        </section>
+    </main>
+</body>
+
+</html>

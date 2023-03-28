@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ma page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% assets 'css_main' %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}">
+    {% endassets %}
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class=" menu">
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="container">
+            <a href="oral/analyses" class="box_oral">
+                <p>
+                    Olympes de Gouges
+                </p>
+                <img width="40px" src="https://cdn-icons-png.flaticon.com/512/1648/1648058.png">
+            </a>
+            <a href="oral/oeuvre" class="box_oral">
+                <p>
+                    Malade Imaginaire
+                </p>
+                <img width="40px" src="https://cdn-icons-png.flaticon.com/512/2787/2787884.png">
+            </a>
+            <a href="oral/grammaire" class="box_oral">
+                <p>
+                    Les Fleurs du mal
+                </p>
+                <img width="40px" src="https://cdn-icons-png.flaticon.com/512/5418/5418306.png">
+            </a>
+            <a href="oral/grammaire" class="box_oral">
+                <p>
+                    Manon Lescaut
+                </p>
+                <img width="40px" src="https://cdn-icons-png.flaticon.com/512/4927/4927923.png">
+            </a>
+
+        </section>
+    </main>
+</body>
+
+</html>

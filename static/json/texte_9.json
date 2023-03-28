@@ -1,0 +1,107 @@
+[
+    {
+        "nom": " Mouvement n°1 ",
+        "cheminImage": "/static/image/quote_analyse/texte_9/0.png",
+        "denomi": 1,
+        "mouv": true,
+        "id": 0
+    },
+    {
+        "nom": " Messieurs, daignez répondre à notre question ; vous allez faire des règlements pour la République, n'y travaillerons-nous pas de concert ? À quoi nous destinez-vous là-dessus ? ",
+        "cheminImage": "/static/image/quote_analyse/texte_9/1.png",
+        "denomi": 7,
+        "mouv": false,
+        "id": 1
+    },
+    {
+        "nom": " À rien, comme à l’ordinaire ? ",
+        "cheminImage": "/static/image/quote_analyse/texte_9/2.png",
+        "denomi": 5,
+        "mouv": false,
+        "id": 2
+    },
+    {
+        "nom": " C'est-à-dire à vous marier quand vous serez filles, à obéir à vos maris quand vous serez femmes, et à veiller sur votre maison : on ne saurait vous ôter cela, cela, c’est votre lot ",
+        "cheminImage": "/static/image/quote_analyse/texte_9/3.png",
+        "denomi": 7,
+        "mouv": false,
+        "id": 3
+    },
+    {
+        "nom": " Est-ce là votre dernier mot ? Battez tambour ; (Et à Lina.) et vous, allez afficher l'ordonnance à cet arbre. ",
+        "cheminImage": "/static/image/quote_analyse/texte_9/4.png",
+        "denomi": 3,
+        "mouv": false,
+        "id": 4
+    },
+    {
+        "nom": " Mouvement n°2 ",
+        "cheminImage": "/static/image/quote_analyse/texte_9/5.png",
+        "denomi": 1,
+        "mouv": true,
+        "id": 0
+    },
+    {
+        "nom": " On bar le tambour et Lina affiche ",
+        "cheminImage": "/static/image/quote_analyse/texte_9/6.png",
+        "denomi": 5,
+        "mouv": false,
+        "id": 5
+    },
+    {
+        "nom": " Mais qu'est-ce que c'est que cette mauvaise plaisanterie-là ? Parlez-leur donc, seigneur Timagène, sachez de quoi il est question ",
+        "cheminImage": "/static/image/quote_analyse/texte_9/7.png",
+        "denomi": 2,
+        "mouv": false,
+        "id": 6
+    },
+    {
+        "nom": " Voulez-vous bien vous expliquer, Madame ? ",
+        "cheminImage": "/static/image/quote_analyse/texte_9/8.png",
+        "denomi": 3,
+        "mouv": false,
+        "id": 7
+    },
+    {
+        "nom": " Lisez l'affiche, l'explication y est. ",
+        "cheminImage": "/static/image/quote_analyse/texte_9/9.png",
+        "denomi": 3,
+        "mouv": false,
+        "id": 8
+    },
+    {
+        "nom": " Elle vous apprendra que nous voulons nous mêler de tout, être associées à tout, exercer avec vous tous les emplois, ceux de finance, de judicature et d'épée. ",
+        "cheminImage": "/static/image/quote_analyse/texte_9/10.png",
+        "denomi": 4,
+        "mouv": false,
+        "id": 9
+    },
+    {
+        "nom": " Mouvement n°3 ",
+        "cheminImage": "/static/image/quote_analyse/texte_9/11.png",
+        "denomi": 1,
+        "mouv": true,
+        "id": 0
+    },
+    {
+        "nom": " D'épée, Madame ? ",
+        "cheminImage": "/static/image/quote_analyse/texte_9/12.png",
+        "denomi": 2,
+        "mouv": false,
+        "id": 10
+    },
+    {
+        "nom": " Oui d'épée, Monsieur ; sachez que jusqu'ici nous n'avons été poltronnes que par éducation ",
+        "cheminImage": "/static/image/quote_analyse/texte_9/13.png",
+        "denomi": 3,
+        "mouv": false,
+        "id": 11
+    },
+    {
+        "nom": " Mort de ma vie ! qu'on nous donne des armes, nous serons plus méchantes que vous ; je veux que dans un mois, nous maniions le pistolet comme un éventail : je tirai ces jours passés sur un perroquet, moi qui vous parle. ",
+        "cheminImage": "/static/image/quote_analyse/texte_9/14.png",
+        "denomi": 7,
+        "mouv": false,
+        "id": 12
+    }
+]

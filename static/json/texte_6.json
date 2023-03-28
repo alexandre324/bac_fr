@@ -1,0 +1,107 @@
+[
+    {
+        "nom": " Mouvement n°1 ",
+        "cheminImage": "/static/image/quote_analyse/texte_6/0.png",
+        "denomi": 1,
+        "mouv": true,
+        "id": 0
+    },
+    {
+        "nom": " Les mères, les filles, les sœurs, ",
+        "cheminImage": "/static/image/quote_analyse/texte_6/1.png",
+        "denomi": 8,
+        "mouv": false,
+        "id": 1
+    },
+    {
+        "nom": " représentantes de la nation, ",
+        "cheminImage": "/static/image/quote_analyse/texte_6/2.png",
+        "denomi": 3,
+        "mouv": false,
+        "id": 2
+    },
+    {
+        "nom": " demandent d'être consituées en assemblé nationale ",
+        "cheminImage": "/static/image/quote_analyse/texte_6/3.png",
+        "denomi": 6,
+        "mouv": false,
+        "id": 3
+    },
+    {
+        "nom": " Mouvement n°2 ",
+        "cheminImage": "/static/image/quote_analyse/texte_6/4.png",
+        "denomi": 1,
+        "mouv": true,
+        "id": 0
+    },
+    {
+        "nom": " Considérant que l'ignorance, l'oubli ou le mépris des droits de la femme sont les seules causes des malheurs publics et de la corruption des gouvernements, ",
+        "cheminImage": "/static/image/quote_analyse/texte_6/5.png",
+        "denomi": 7,
+        "mouv": false,
+        "id": 4
+    },
+    {
+        "nom": " [elles] ont résolu d'exposer dans une déclaration solennelle, ",
+        "cheminImage": "/static/image/quote_analyse/texte_6/6.png",
+        "denomi": 2,
+        "mouv": false,
+        "id": 5
+    },
+    {
+        "nom": " les droits naturels, inaliénables et sacrés de la femme, ",
+        "cheminImage": "/static/image/quote_analyse/texte_6/7.png",
+        "denomi": 3,
+        "mouv": false,
+        "id": 6
+    },
+    {
+        "nom": " afin que cette déclaration constamment présente à tous les membres du corps social, leur rappelle sans cesse leurs droits et leurs devoirs, ",
+        "cheminImage": "/static/image/quote_analyse/texte_6/8.png",
+        "denomi": 2,
+        "mouv": false,
+        "id": 7
+    },
+    {
+        "nom": " afin que les actes du pouvoir des femmes, et ceux du pouvoir des hommes pouvant être à chaque instant comparés avec le but de toute institution politique, en soient plus respectés, ",
+        "cheminImage": "/static/image/quote_analyse/texte_6/9.png",
+        "denomi": 3,
+        "mouv": false,
+        "id": 8
+    },
+    {
+        "nom": " afin que les réclamations des citoyennes, fondées désormais sur des principes simples et incontestables, tournent toujours au maintien de la Constitution, des bonnes mœurs, et au bonheur de tous. ",
+        "cheminImage": "/static/image/quote_analyse/texte_6/10.png",
+        "denomi": 4,
+        "mouv": false,
+        "id": 9
+    },
+    {
+        "nom": " Mouvement n°3 ",
+        "cheminImage": "/static/image/quote_analyse/texte_6/11.png",
+        "denomi": 1,
+        "mouv": true,
+        "id": 0
+    },
+    {
+        "nom": " En conséquence, ",
+        "cheminImage": "/static/image/quote_analyse/texte_6/12.png",
+        "denomi": 2,
+        "mouv": false,
+        "id": 10
+    },
+    {
+        "nom": " le sexe supérieur en beauté comme en courage dans les souffrances maternelles, ",
+        "cheminImage": "/static/image/quote_analyse/texte_6/13.png",
+        "denomi": 3,
+        "mouv": false,
+        "id": 11
+    },
+    {
+        "nom": " reconnaît et déclare, en présence et sous les auspices de l'Être suprême, les Droits suivants de la femme et de la citoyenne. ",
+        "cheminImage": "/static/image/quote_analyse/texte_6/14.png",
+        "denomi": 3,
+        "mouv": false,
+        "id": 12
+    }
+]
