@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Terminale</title>
+    <link rel="icon" href="../static/image/icon.ico">
+    {% assets 'css_main' %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}">
+    {% endassets %}
+
+</head>
+
+
+<body class="test">
+
+
+    <header>
+        <nav>
+            <div class="header-link-container">
+                <a class="header-home-container" href="/">
+                    <h3>Terminale
+                    </h3>
+                    <img src="https://cdn-icons-png.flaticon.com/512/6597/6597982.png">
+                </a>
+                <a class="header-home-container" href="/" id="link_search">
+                    <h3 class="header-title">
+                        Search
+                    </h3>
+                    <img src="   https://cdn-icons-png.flaticon.com/512/2015/2015218.png ">
+                </a>
+            </div>
+            <div class="header-title-container">
+                <h1>Cours</h1>
+            </div>
+            <div class="menu">
+                <button class="menu-right" onclick="hide_show()"><img
+                        src="https://cdn-icons-png.flaticon.com/512/2115/2115216.png"></button>
+            </div>
+        </nav>
+        <div id="settings" style="opacity: 0;">
+            <div>
+                <p>Color</p>
+                <ul class="settings-colors">
+                    <li><button class="diagonal-button style1" onclick="style1()"></button></li>
+                    <li><button class=" diagonal-button style2" onclick="style2()"></button></li>
+                    <li><button class=" diagonal-button style3" onclick="style3()"></button></li>
+                    <li><button class="diagonal-button style4" onclick="style4()"></button></li>
+                    <li><button class=" diagonal-button style5" onclick="style5()"></button></li>
+                    <li><button class=" diagonal-button style6" onclick="style6()"></button></li>
+                    <li><button class="diagonal-button style7" onclick="style7()"></button></li>
+                    <li><button class=" diagonal-button style8" onclick="style8()"></button></li>
+                    <li><button class=" diagonal-button style9" onclick="style9()"></button></li>
+                </ul>
+            </div>
+            <div>
+                <p>Angles</p>
+                <ul class="settings-radius">
+                    <li><button class="radius-button radius1" onclick="radius1()"></button></li>
+                    <li><button class=" radius-button radius2" onclick="radius2()"></button></li>
+                    <li><button class=" radius-button radius3" onclick="radius3()"></button></li>
+                    <li><button class=" radius-button radius4" onclick="radius4()"></button></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="main-cours-container">
+        <div id="page_position_1" style="margin-top: 10vh;"></div>
+        <div class="box-cours-elements video-player" id="box-cours-elements-1" style="margin-bottom: 10vh;">
+            <div id="content-container" class="content-full-screen">
+                <img class="cours-element" src="https://upload.wikimedia.org/wikipedia/commons/7/71/Small_pie.svg">
+            </div>
+        </div>
+
+        <div id="page_position_2" style="margin-top: 10vh;"></div>
+        <div class="box-cours-elements video-player" id="box-cours-elements-2">
+            <div id="content-container" class="content-full-screen">
+                <video class="cours-element " controls>
+                    <source src="../static/video/video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <div id="page_position_3" style="margin-top: 10vh;"></div>
+        <div class="box-cours-elements video-player" id="box-cours-elements-3">
+            <h2 class="cours-element">Video Révolution Fr</h2>
+            <div id="content-container">
+                <video class="cours-element video-player-small" controls>
+                    <source src="../static/video/video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+
+                </video>
+                <p class="cours-element">TESmbofzelibfezfliezbfezihvajez,pfjeaz ov hoh veznoirz zanofezn fzeanoiefhzn
+                    nmfeioz nmpa TESmbofzelibfezfliezbfezihvajez,pfjeaz ov hoh veznoirz zanofezn fzeanoiefhzn
+                    nmfeioz nmpa TESmbofzelibfezfliezbfezihvajez,pfjeaz ov hoh veznoirz zanofezn fzeanoiefhzn
+                    nmfeioz nmpa TESmbofzelibfezfliezbfezihvajez,pfjeaz ov hoh veznoirz zanofezn fzeanoiefhzn
+                    nmfeioz nmpa</p>
+            </div>
+        </div>
+
+
+        <div id="page_position_4" style="margin-top: 10vh;"></div>
+        <div class="box-cours-elements video-player" id="box-cours-elements-4">
+            <h2 class=" cours-element">Video Révolution Fr</h2>
+            <div id="content-container">
+                <video class="cours-element video-player-small" controls>
+                    <source src="../static/video/video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <p class="cours-element">3</p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="scroll-buttons" id="reverse_none">
+        <button id="scroll-up-button">
+            <img id="F_haut" src="" onclick="haut()">
+        </button>
+        <button id=" scroll-down-button" onclick="bas()">
+            <img id="F_bas" src="">
+        </button>
+    </div>
+
+    <div id="id-info">
+        <p id="id-info-text">1</p>
+    </div>
+
+</body>
+
+<script src="../static/javascript/settings.js"></script>
+<script src="../static/javascript/cours.js"></script>
+
+
+
+</html>

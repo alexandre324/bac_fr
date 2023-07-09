@@ -3,12 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Ma page</title>
+    <title>Terminale</title>
+    <link rel="icon" href="{{ url_for('static', filename='image/icon.ico') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% assets 'css_texte' %}
     <link rel="stylesheet" href="{{ ASSET_URL }}">
     {% endassets %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 
@@ -16,34 +18,36 @@
 
     <header>
         <div class="icons">
-            <a class="headers link" href="/">
-                <img width="20px" src="https://cdn-icons-png.flaticon.com/512/3951/3951470.png">
-                Acceuil
-            </a>
             <a class="headers link" href="/oral/analyses">
                 <img width="20px" src="https://cdn-icons-png.flaticon.com/512/4947/4947789.png">
                 Liste de textes
             </a>
-            <a class="headers link" href="/oral/analyses">
-                <img width="20px" src="https://cdn-icons-png.flaticon.com/512/7132/7132070.png">
-                Cours
-            </a>
+            <div class="headers" id="header_moyenne">Moyenne : 0/10
+
+            </div>
+            <button class="headers button_moyenne" id="header_moyenne" style="visibility: hidden; color: black;"
+                onclick="afficherMessage()">Notes</button>
+
         </div>
-        <div class="headers" id="header_texte">1</div>
+
+        <div style=" display: flex;">
+            <div class="headers" id="header_texte">1</div>
+        </div>
     </header>
+
     <div class="container">
 
         <h1 id="full_screen_message" style="position: fixed; bottom: 10px; left: 10px;"> Press 'ESC' to escape</h1>
         <div class="left">
             <img class="fullscreen-image" src="" id="text_image">
         </div>
-        <div class="right">
+        <div class="right" id="right">
 
             <div class="citation">
                 <div id="numero_citation">3</div>
                 <p id="citation_texte">Citation non trouvé !</p>
             </div>
-            <img id="image_answer" style="display: none;" src="{{ url_for('static', filename='image/white.png')}}">
+            <img id="image_answer" style="display: none;" src="">
             <button onclick="reponse()" id="bouton_reponse">Réponse</button>
             <div id="boutons_check">
                 <div>
@@ -56,11 +60,13 @@
             </div>
             <ul id="grades_sumup">
 
+
+            </ul>
+            <ul id="message" style="display: none;">
             </ul>
 
         </div>
     </div>
-
 
     <div class="toggle_texte_style">
         Afficher les détails
@@ -79,6 +85,41 @@
     var note_page = false
     var sumup_page = false
     let done = [];
+
+
+    function afficherMessage() {
+        document.querySelector('.button_moyenne').blur();
+        var ul = document.getElementById("message");
+
+        if (ul.style.display == "none") {
+            ul.style.display = "block";
+            var detail_moyenne = true;
+
+            ul.innerHTML = '';
+
+            for (var i = 0; i < grades.length; i++) {
+                var li = document.createElement("li");
+                var div_num_li = document.createElement("div");
+                var div_grade_li = document.createElement("div");
+                div_num_li.textContent = i + 1;
+                div_num_li.classList = "num";
+                div_grade_li.textContent = grades[i];
+                if (grades[i] < 4) {
+                    div_grade_li.style.backgroundColor = "rgb(181, 90, 67)";
+                } else if (grades[i] < 8) {
+                    div_grade_li.style.backgroundColor = "rgb(178, 186, 93)";
+                } else {
+                    div_grade_li.style.backgroundColor = "rgb(62, 135, 62)";
+                }
+                li.appendChild(div_num_li);
+                li.appendChild(div_grade_li);
+                ul.appendChild(li);
+            }
+        } else {
+            ul.style.display = "none";
+            var detail_moyenne = false;
+        }
+    }
 
 
     /* GET TEXTE ID */
@@ -100,7 +141,21 @@
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+
     function get_quote() {
+        var somme_elements = 0;
+        for (var y = 0; y < grades.length; y++) {
+            somme_elements = somme_elements + parseFloat(grades[y]);
+        }
+        console.log(somme_elements)
+        var moyenne = somme_elements / grades.length;
+        var new_moyenne = moyenne.toFixed(2);
+
+        if (isNaN(new_moyenne)) {
+            document.getElementById("header_moyenne").innerHTML = "0.00 / 10";
+        } else {
+            document.getElementById("header_moyenne").innerHTML = new_moyenne.toString() + "/10";
+        }
         $.getJSON(json_file, function (data) {
             // faire quelque chose avec les données chargées depuis le fichier JSON
 
@@ -114,24 +169,38 @@
             done.push(quote_id);
 
             quote = data[quote_id].nom
+
             document.getElementById("deno").innerHTML = '/ ' + data[quote_id].denomi;
             let citation_texte_selector = document.getElementById("citation_texte");
             let numero_citation_selector = document.getElementById("numero_citation");
 
+
             if (data[quote_id].mouv == false) {
                 citation_texte_selector.innerHTML = '"' + quote + '"';
                 numero_citation_selector.innerHTML = data[quote_id].id;
-                citation_selector.classList.remove('movement')
-                numero_citation_selector.classList.remove('movement')
+                citation_selector.classList.remove('movement');
+                citation_selector.classList.remove('intro');
+                numero_citation_selector.classList.remove('movement');
+                numero_citation_selector.classList.remove('intro');
                 document.getElementById('image_answer').style.borderRadius = "15px";
                 document.getElementById('image_answer').style.width = "65%";
             } else {
-                citation_texte_selector.innerHTML = quote;
-                citation_selector.classList.add('movement')
-                numero_citation_selector.classList.add('movement')
-                document.getElementById('image_answer').style.borderRadius = "0px";
-                document.getElementById('image_answer').style.width = "85%";
+                if (data[quote_id].id == 10000009) {
 
+                    citation_texte_selector.innerHTML = quote;
+                    citation_selector.classList.add('intro');
+                    numero_citation_selector.classList.add('intro');
+                    document.getElementById('image_answer').style.borderRadius = "0px";
+                    document.getElementById('image_answer').style.width = "85%";
+                } else {
+                    citation_texte_selector.innerHTML = quote;
+                    citation_selector.classList.remove('intro');
+                    citation_selector.classList.add('movement');
+                    numero_citation_selector.classList.remove('intro');
+                    numero_citation_selector.classList.add('movement');
+                    document.getElementById('image_answer').style.borderRadius = "0px";
+                    document.getElementById('image_answer').style.width = "85%";
+                }
             }
 
 
@@ -173,6 +242,7 @@
     /* GET GRADE */
     grades = []
     function note() {
+        document.querySelector('.button_moyenne').style.visibility = "visible";
         $.getJSON(json_file, function (data) {
             var inputGrade = document.getElementById("grade").value;
 
@@ -186,16 +256,38 @@
                 grade_on_10 = inputGrade / data[done[done.length - 1]].denomi * 10
                 grades.push(grade_on_10.toFixed(1));
 
+                var ul = document.getElementById("message");
+                ul.innerHTML = '';
+
+                for (var i = 0; i < grades.length; i++) {
+                    var li = document.createElement("li");
+                    var div_num_li = document.createElement("div");
+                    var div_grade_li = document.createElement("div");
+                    div_num_li.textContent = i + 1;
+                    div_num_li.classList = "num";
+                    div_grade_li.textContent = grades[i];
+                    if (grades[i] < 4) {
+                        div_grade_li.style.backgroundColor = "rgb(181, 90, 67)";
+                    } else if (grades[i] < 8) {
+                        div_grade_li.style.backgroundColor = "rgb(178, 186, 93)";
+                    } else {
+                        div_grade_li.style.backgroundColor = "rgb(62, 135, 62)";
+                    }
+                    li.appendChild(div_num_li);
+                    li.appendChild(div_grade_li);
+                    ul.appendChild(li);
+                }
+
                 /* QUAND TOUTE LES CITATIONS ONT ETE NOTE */
                 if (done.length == texte_nb_quote) {
                     sumup_page = true;
                     citation_selector.style.display = "none";
                     document.getElementById('image_answer').style.display = "none";
                     document.getElementById("boutons_check").style.display = "none";
+                    document.getElementById("header_moyenne").style.display = "none";
 
                     /* SUMUP */
                     var ul = document.getElementById("grades_sumup");
-                    ul.style.backgroundColor = "rgb(194, 194, 214)";
                     ul.style.listStyle = "none";
                     ul.style.padding = "20px";
                     ul.style.margin = "-30px";
@@ -208,57 +300,68 @@
                         for (var i = 0; i < data.length; i++) {
                             var li = document.createElement("li");
                             li.style.display = "flex"
-                            li.style.backgroundColor = "#67a377";
+                            li.style.backgroundColor = "#dedded";
                             li.style.justifyContent = "space-between";
                             li.style.marginBlockEnd = "3%";
+                            li.style.alignItems = "center";
 
 
-
+                            /* NORMAL QUOTE SUMUP */
                             if (data[i].mouv == false) {
                                 var div_quote_sumup = document.createElement("div");
                                 div_quote_sumup.classList.add("quote_sumup");
                                 div_quote_sumup.innerHTML = data[i].nom;
-                                div_quote_sumup.style.backgroundColor = "#abebbc";
 
                                 var div_id = document.createElement("div");
                                 div_id.classList.add("id_sumup");
                                 div_id.innerHTML = data[i].id;
-                                li.style.backgroundColor = "rgb(160, 160, 190)";
-                                div_quote_sumup.style.backgroundColor = "rgb(218, 218, 231)";
+
+                                li.style.backgroundColor = "#ffefe3";
+                                div_quote_sumup.style.backgroundColor = "#ebd8ca";
                                 li.appendChild(div_id);
                                 li.style.borderRadius = "15px";
                                 li.style.padding = "3%";
-                            } else {
-                                var div_quote_sumup = document.createElement('img');
-                                div_quote_sumup.classList.add("quote_sumup");
-                                div_quote_sumup.style.width = "80%";
-                                li.style.backgroundColor = "rgb(194, 194, 214)";
-                                div_quote_sumup.style.backgroundColor = "rgb(194, 194, 214)";
-                                div_quote_sumup.src = data[i].cheminImage;
-                                li.style.padding = "0%";
-                                li.style.borderRadius = "5px";
 
+                            } else {
+                                /* INTRO SUMUP */
+                                if (data[i].id == 10000009) {
+                                    var div_quote_sumup = document.createElement("div");
+                                    div_quote_sumup.classList.add("quote_sumup");
+                                    div_quote_sumup.innerHTML = data[i].nom;
+                                    div_quote_sumup.style.backgroundColor = "#c7c5de";
+                                    li.style.backgroundColor = "#dedded";
+                                    li.style.borderRadius = "15px";
+                                    li.style.padding = "3%";
+
+                                } else {
+                                    /* MOVEMENT SUMUP */
+                                    var div_quote_sumup = document.createElement('img');
+                                    div_quote_sumup.classList.add("quote_sumup");
+                                    li.style.backgroundColor = "#bedaf0";
+                                    div_quote_sumup.style.backgroundColor = "#87ceeb";
+                                    div_quote_sumup.src = data[i].cheminImage;
+                                    div_quote_sumup.style.maxHeight = "70px";
+                                    div_quote_sumup.style.width = "auto";
+                                    div_quote_sumup.style.maxWidth = "80%";
+                                    li.style.paddingInline = "3%";
+                                    li.style.borderRadius = "15px";
+                                }
                             }
 
                             var div_grade_sumup = document.createElement("div");
                             div_grade_sumup.classList.add("grade_sumup");
                             div_grade_sumup.innerHTML = grades[i];
-                            if (data[i].mouv == false) {
-                                if (grades[i] < 4) {
-                                    div_grade_sumup.style.backgroundColor = "rgb(181, 90, 67)";
-                                } else if (grades[i] < 7) {
-                                    div_grade_sumup.style.backgroundColor = "rgb(178, 186, 93)";
-                                } else {
-                                    div_grade_sumup.style.backgroundColor = "rgb(62, 135, 62)";
-                                }
+                            if (grades[i] < 4) {
+                                div_grade_sumup.style.backgroundColor = "rgb(181, 90, 67)";
+                            } else if (grades[i] < 8) {
+                                div_grade_sumup.style.backgroundColor = "rgb(178, 186, 93)";
                             } else {
-                                div_grade_sumup.style.backgroundColor = "#abebbc";
-                                div_grade_sumup.style.margin = "3%";
+                                div_grade_sumup.style.backgroundColor = "rgb(62, 135, 62)";
                             }
 
 
-                            somme_elements = somme_elements + parseInt(grades[i]);
 
+                            somme_elements = somme_elements + parseInt(grades[i]);
 
                             li.appendChild(div_quote_sumup);
                             li.appendChild(div_grade_sumup);
@@ -288,6 +391,7 @@
                         li.appendChild(div_quote_sumup);
                         li.appendChild(div_grade_sumup);
                         ul.appendChild(li);
+
                     });
 
 
@@ -305,6 +409,7 @@
             } else {
                 /* NOTE INVALIDE */
                 document.getElementById("text_grade").style.display = "block";
+
             }
         });
     }
@@ -359,8 +464,13 @@
 
     /* TOGGLE ON FULL SCREEN (FOR DETAILS) */
     const toggle = document.querySelector('.toggle_texte_style');
-    var toggle_value = false
+
+    document.querySelector('.off').style.visibility = "hidden";
     document.querySelector('.on').style.visibility = "hidden";
+    let new_detail_image_src = new_image_src.replace('texte_', "texte_detail_");
+    document.getElementById("text_image").setAttribute("src", new_detail_image_src);
+    var toggle_value = true;
+
     toggle.addEventListener('click', () => {
         if (toggle_value == false) {
             document.querySelector('.off').style.visibility = "hidden";
@@ -377,7 +487,7 @@
     });
 
     get_quote()
-
 </script>
+
 
 </html>

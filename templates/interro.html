@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Terminale</title>
+    <link rel="icon" href="../static/image/icon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% assets 'css_main' %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}">
+    {% endassets %}
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="header-link-container">
+                <a class="header-home-container" href="/">
+                    <h3>Terminale
+                    </h3>
+                    <img src="https://cdn-icons-png.flaticon.com/512/6597/6597982.png">
+                </a>
+                <a class="header-home-container" href="/" id="link_search">
+                    <h3 class="header-title">
+                        Search
+                    </h3>
+                    <img src="   https://cdn-icons-png.flaticon.com/512/2015/2015218.png ">
+                </a>
+            </div>
+            <div class="header-title-container">
+                <h1>Interro</h1>
+            </div>
+            <div class="menu">
+                <button class="menu-right" onclick="hide_show()"><img
+                        src="https://cdn-icons-png.flaticon.com/512/2115/2115216.png"></button>
+            </div>
+        </nav>
+        <div id="settings" style="opacity: 0;">
+            <div>
+                <p>Color</p>
+                <ul class="settings-colors">
+                    <li><button class="diagonal-button style1" onclick="style1()"></button></li>
+                    <li><button class=" diagonal-button style2" onclick="style2()"></button></li>
+                    <li><button class=" diagonal-button style3" onclick="style3()"></button></li>
+                    <li><button class="diagonal-button style4" onclick="style4()"></button></li>
+                    <li><button class=" diagonal-button style5" onclick="style5()"></button></li>
+                    <li><button class=" diagonal-button style6" onclick="style6()"></button></li>
+                    <li><button class="diagonal-button style7" onclick="style7()"></button></li>
+                    <li><button class=" diagonal-button style8" onclick="style8()"></button></li>
+                    <li><button class=" diagonal-button style9" onclick="style9()"></button></li>
+                </ul>
+            </div>
+            <div>
+                <p>Angles</p>
+                <ul class="settings-radius">
+                    <li><button class="radius-button radius1" onclick="radius1()"></button></li>
+                    <li><button class=" radius-button radius2" onclick="radius2()"></button></li>
+                    <li><button class=" radius-button radius3" onclick="radius3()"></button></li>
+                    <li><button class=" radius-button radius4" onclick="radius4()"></button></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+
+
+
+
+    </main>
+</body>
+
+<script src="../static/javascript/settings.js"></script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const matiere = urlParams.get('matiere');
+    const link_search = document.getElementById("link_search");
+    link_search.href = "/matiere?matiere=" + matiere;
+
+
+</script>
+
+</html>
