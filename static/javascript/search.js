@@ -230,8 +230,6 @@ function load_cour(search_word, original_word) {
             console.error('Error:', error);
         });
 
-
-
 }
 
 

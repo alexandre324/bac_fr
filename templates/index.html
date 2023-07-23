@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Terminale</title>
-    <link rel="icon" href="../static/image/icon.ico">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/6990/6990855.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% assets 'css_main' %}
     <link rel="stylesheet" href="{{ ASSET_URL }}">
@@ -47,35 +47,44 @@
         </div>
     </header>
     <main>
-        <section class="container">
-            <a class="box" href="/matiere?matiere=1">
-                <img
-                    src="https://img.freepik.com/vecteurs-premium/fond-tableau-mathematique-realiste_23-2148154055.jpg?w=2000">
-                <p>Math</p>
-            </a>
-            <a class="box" href="/matiere?matiere=2">
-                <img
-                    src="https://uploads-ssl.webflow.com/5fe22d5483f21c0a223357f8/5fef37dfbc9ac22fb2a855d3_Webp.net-resizeimage.png">
-                <p>NSI</p>
-            </a>
-            <a class="box" href="/matiere?matiere=3">
-                <img src="https://major-prepa.com/wp-content/uploads/2021/12/Introduction_histoire.jpg">
-                <p>Histoire</p>
-            </a>
-            <a class="box" href="/matiere?matiere=4">
-                <img src="https://img.over-blog-kiwi.com/0/87/36/68/20160905/ob_df7021_socrates.jpg">
-                <p>Philosophie</p>
-            </a>
-            <a class="box" href="/matiere?matiere=5">
-                <img src="https://node01.flagstat.net/media/image/2829r.jpg">
-                <p>Anglais</p>
-            </a>
-            <a class="box" href="/matiere?matiere=6">
-                <img src="https://f.maformation.fr/edito/sites/3/2021/10/espagne.jpeg">
-                <p>Espagnole</p>
-            </a>
+        <section class="container" id="container">
+
         </section>
+
+        <script>
+
+            fetch("../static/json/matiere.json")
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('container');
+
+
+
+                    data.forEach((item, index) => {
+                        const matiereLink = document.createElement('a');
+                        matiereLink.classList.add('box');
+                        matiereLink.href = `/matiere?matiere=${index + 1}`;
+
+                        const matiereImage = document.createElement('img');
+                        matiereImage.src = item.image_src;
+                        matiereLink.appendChild(matiereImage);
+
+                        const matiereName = document.createElement('p');
+                        matiereName.textContent = item.matiere_name;
+                        matiereLink.appendChild(matiereName);
+
+                        container.appendChild(matiereLink);
+                    });
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
+        </script>
     </main>
+    <div class="div-create-container">
+        <a href="/create">
+            <p>Create</p> <img src="https://cdn-icons-png.flaticon.com/512/6001/6001933.png">
+        </a>
+    </div>
 </body>
 <script>
     var myVariable1 = localStorage.getItem("style_color_id");

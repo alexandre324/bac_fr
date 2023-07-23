@@ -1,0 +1,47 @@
+[
+    {
+        "cours_type": 1,
+        "title": " title ",
+        "video_url": "https://www.youtube.com/embed/jbZg7NsrZhA",
+        "texte": " texte "
+    },
+    {
+        "cours_type": 2,
+        "title": " title ",
+        "video_src": "../static/video/video.mp4",
+        "texte": " texte "
+    },
+    {
+        "cours_type": 3,
+        "audio_src": "audio.mp3",
+        "texte": " texte ",
+        "title": " title "
+    },
+    {
+        "cours_type": 4,
+        "image_src": "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png",
+        "texte": " texte  ",
+        "title": " title "
+    },
+    {
+        "cours_type": 4,
+        "image_src": "https://www.hhi-ni.com/wp-content/uploads/2017/05/6823214-large.jpg",
+        "texte": " texte ",
+        "title": " title "
+    },
+    {
+        "cours_type": 5,
+        "image_src": "https://images.frandroid.com/wp-content/uploads/2020/11/samsung-withgalaxy-photo-verticale-01.jpg",
+        "texte": " texte ",
+        "title": " title "
+    },
+    {
+        "cours_type": 6,
+        "title": " title ",
+        "texte": "texte 1 ",
+        "texte1": " texte 2 ",
+        "texte2": " texte 3 ",
+        "texte3": " texte 4 ",
+        "texte4": " texte 5 "
+    }
+]

@@ -13,10 +13,10 @@ css_main = Bundle('css/style.css', output='gen/main.css')
 
 assets.register('css_main', css_main)
 
+
 @app.route('/')
 def home():
     return render_template('index.html')
-
 
 @app.route('/matiere')
 def matiere():
@@ -29,6 +29,10 @@ def interro():
 @app.route('/cours')
 def cours():
     return render_template('cours.html')
+
+@app.route('/create')
+def create():
+    return render_template('create.html')
 
 
 
