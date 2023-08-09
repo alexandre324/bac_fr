@@ -31,24 +31,44 @@
                 <h1>Interro</h1>
             </div>
             <div class="menu">
-                <button class="menu-right" onclick="hide_show()"><img
+                <button class="menu-right" onclick="hide_show()"><img id="button-settings"
                         src="https://cdn-icons-png.flaticon.com/512/2115/2115216.png"></button>
             </div>
         </nav>
         <div id="settings" style="opacity: 0;">
             <div>
                 <p>Color</p>
-                <ul class="settings-colors">
-                    <li><button class="diagonal-button style1" onclick="style1()"></button></li>
-                    <li><button class=" diagonal-button style2" onclick="style2()"></button></li>
-                    <li><button class=" diagonal-button style3" onclick="style3()"></button></li>
-                    <li><button class="diagonal-button style4" onclick="style4()"></button></li>
-                    <li><button class=" diagonal-button style5" onclick="style5()"></button></li>
-                    <li><button class=" diagonal-button style6" onclick="style6()"></button></li>
-                    <li><button class="diagonal-button style7" onclick="style7()"></button></li>
-                    <li><button class=" diagonal-button style8" onclick="style8()"></button></li>
-                    <li><button class=" diagonal-button style9" onclick="style9()"></button></li>
+                <ul class="settings-colors" id="style_list">
+
                 </ul>
+
+                <script>
+                    fetch('../static/json/settings_color.json')
+                        .then(response => response.json())
+                        .then(data => {
+                            data.forEach(item => {
+                                const element_id = item.color_id;
+
+                                const liElement = document.createElement("li");
+
+                                const buttonElement = document.createElement("button");
+                                const class_element = "diagonal-button style" + parseInt(element_id, 10);
+                                buttonElement.className = class_element
+                                buttonElement.onclick = function () {
+                                    style_change(element_id);
+                                };
+
+                                liElement.appendChild(buttonElement);
+
+                                const ulElement = document.getElementById("style_list");
+                                ulElement.appendChild(liElement);
+
+                            });
+                        })
+                        .catch(error => {
+                            console.error('Une erreur s\'est produite lors de la lecture du fichier JSON :', error);
+                        });
+                </script>
             </div>
             <div>
                 <p>Angles</p>

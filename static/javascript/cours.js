@@ -1,14 +1,10 @@
-/*
-
-cours types: 
+/* cours types: 
 1: Youtube 
 2: Video 
 3: Audio with/(out) texte
 4: Image Horiz
 5: Image Vert
-6: Text
-
-*/
+6: Text */
 
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -41,6 +37,8 @@ fetch('../static/json/cours/cours_exemple.json')
         data.forEach((item, index) => {
             load_element(item, index)
         });
+
+        change_text_color()
 
     })
     .catch(error => {
@@ -122,16 +120,9 @@ window.addEventListener('beforeunload', function () {
 });
 
 
-//Convert vh -> px
-var viewportHeight = window.innerHeight;
-var vhValue = 10;
-var pxValueMargin = (viewportHeight * vhValue) / 100;
-
-
 window.addEventListener('scroll', function () {
     var scrollPosition = window.scrollY;
-    var div_margin_height = divHeight + pxValueMargin;
-    var position_id_found = scrollPosition / div_margin_height;
+    var position_id_found = scrollPosition / divHeight;
     var actual_div_position = Math.round(position_id_found) + 1;
     page_element = actual_div_position;
     if (actual_div_position <= max_scroll) {
@@ -155,6 +146,34 @@ window.addEventListener('scroll', function () {
     }
 
 });
+
+function getOppositeTextColor(rgb) {
+    const colorValues = rgb.slice(4, -1).split(',');
+
+    const red = parseInt(colorValues[0].trim());
+    const green = parseInt(colorValues[1].trim());
+    const blue = parseInt(colorValues[2].trim());
+
+    const oppositeRed = 255 - red;
+    const oppositeGreen = 255 - green;
+    const oppositeBlue = 255 - blue;
+
+    return `rgb(${oppositeRed}, ${oppositeGreen}, ${oppositeBlue})`;
+}
+
+function change_text_color() {
+
+    const elementsWithClass = document.querySelectorAll('.color-opposite');
+
+    for (const element of elementsWithClass) {
+        const elementStyles = getComputedStyle(element);
+        const backgroundColor = elementStyles.getPropertyValue('background-color').trim();
+        const text_color_new = getOppositeTextColor(backgroundColor);
+        element.style.color = text_color_new;
+    }
+}
+
+
 
 // Full Screen Image
 var isFullScreen = false; // Variable to track full-screen state
@@ -249,7 +268,7 @@ function load_element(element_cour, id_element_cour) {
 
         if (element_cour.texte != "") {
             const texte_1 = document.createElement('p');
-            texte_1.className = 'cours-element';
+            texte_1.className = 'cours-element text-shadow';
             texte_1.textContent = element_cour.texte;
             div_3.appendChild(texte_1);
         }
@@ -311,7 +330,7 @@ function load_element(element_cour, id_element_cour) {
 
         if (element_cour.texte != "") {
             const texte_1 = document.createElement('p');
-            texte_1.className = 'cours-element';
+            texte_1.className = 'cours-element text-shadow';
             texte_1.textContent = element_cour.texte;
             div_3.appendChild(texte_1);
         }
@@ -364,7 +383,7 @@ function load_element(element_cour, id_element_cour) {
 
         if (element_cour.texte != "") {
             const texte = document.createElement("p");
-            texte.className = "cours-element";
+            texte.className = "cours-element text-shadow";
             texte.textContent = element_cour.texte;
             texte.style.alignSelft = "bottom";
             div_3.appendChild(texte);
@@ -417,7 +436,7 @@ function load_element(element_cour, id_element_cour) {
 
         if (element_cour.texte != "") {
             const texte = document.createElement("p");
-            texte.className = "cours-element";
+            texte.className = "cours-element text-shadow";
             texte.textContent = element_cour.texte;
             div_3.appendChild(texte);
         }
@@ -473,7 +492,7 @@ function load_element(element_cour, id_element_cour) {
 
         if (element_cour.texte != "") {
             const texte = document.createElement("p");
-            texte.className = "cours-element";
+            texte.className = "cours-element text-shadow";
             texte.textContent = element_cour.texte;
             div_3.appendChild(texte);
         }
@@ -484,7 +503,7 @@ function load_element(element_cour, id_element_cour) {
         main_cour_container.appendChild(div_2);
 
     } else if (element_cour.cours_type == 6) {
-        // Texte Full
+        // Texte
 
         const div_1 = document.createElement("div");
         div_1.id = "page_position_" + position_element_cours;
@@ -509,25 +528,28 @@ function load_element(element_cour, id_element_cour) {
         }
 
         if (element_cour.texte != "") {
-            const p_3 = document.createElement('p');
-            p_3.classList.add("cours-element");
-            p_3.classList.add("text-element-cours");
-            p_3.textContent = element_cour.texte;
+            const p_1 = document.createElement('p');
+            p_1.classList.add("cours-element");
+            p_1.classList.add("text-shadow");
+            p_1.classList.add("text-element-cours");
+            p_1.textContent = element_cour.texte;
 
-            div_3.appendChild(p_3);
+            div_3.appendChild(p_1);
         }
 
         if (element_cour.texte1 != "") {
-            const p_3 = document.createElement('p');
-            p_3.classList.add("cours-element");
-            p_3.classList.add("text-element-cours");
-            p_3.textContent = element_cour.texte1;
-            div_3.appendChild(p_3);
+            const p_2 = document.createElement('p');
+            p_2.classList.add("cours-element");
+            p_2.classList.add("text-shadow");
+            p_2.classList.add("text-element-cours");
+            p_2.textContent = element_cour.texte1;
+            div_3.appendChild(p_2);
         }
 
         if (element_cour.texte2 != "") {
             const p_3 = document.createElement('p');
             p_3.classList.add("cours-element");
+            p_3.classList.add("text-shadow");
             p_3.classList.add("text-element-cours");
             p_3.textContent = element_cour.texte2;
             div_3.appendChild(p_3);
@@ -536,6 +558,7 @@ function load_element(element_cour, id_element_cour) {
         if (element_cour.texte3 != "") {
             const p_4 = document.createElement('p');
             p_4.classList.add("cours-element");
+            p_4.classList.add("text-shadow");
             p_4.classList.add("text-element-cours");
             p_4.textContent = element_cour.texte3;
             div_3.appendChild(p_4);
@@ -544,19 +567,17 @@ function load_element(element_cour, id_element_cour) {
         if (element_cour.texte4 != "") {
             const p_5 = document.createElement('p');
             p_5.classList.add("cours-element");
+            p_5.classList.add("text-shadow");
             p_5.classList.add("text-element-cours");
             p_5.textContent = element_cour.texte4;
             div_3.appendChild(p_5);
         }
 
-
-
-
         div_2.appendChild(div_3);
 
         main_cour_container.appendChild(div_1);
         main_cour_container.appendChild(div_2);
-
     }
+
 }
 

@@ -5,6 +5,9 @@ const matiere = urlParams.get('matiere');
 var json_url = '../static/json/interro_cour_' + matiere + '.json';
 load_cour(search_word)
 
+document.getElementById("settings").style.display = "none";
+show_settings = false
+
 
 
 function load_cour(search_word, original_word) {
@@ -25,7 +28,6 @@ function load_cour(search_word, original_word) {
                 data.forEach(item => {
                     const a = document.createElement("a");
                     a.classList.add("box-single");
-
 
                     const boxNum = document.createElement("div");
                     boxNum.classList.add("box-num");
@@ -260,11 +262,8 @@ const observeElements = () => {
     });
 };
 
-observeElements();
-
 const mutationObserver = new MutationObserver(() => {
     observer.disconnect();
-
     observeElements();
 });
 

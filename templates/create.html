@@ -22,30 +22,74 @@
                 <img src="https://cdn-icons-png.flaticon.com/512/6597/6597982.png">
             </a>
 
-            <div>
+            <div class="matiere-header-container">
                 <h3 id="header-matiere">
 
                 </h3>
+                <img src="" id="header-matiere-icon">
             </div>
+
+            <script>
+                var currentURL = window.location.href;
+                var url = new URL(currentURL);
+                var params = new URLSearchParams(url.search);
+                var matiere = params.get('matiere');
+
+                fetch("../static/json/matiere.json")
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach((item, index) => {
+                            if (index == matiere) {
+                                document.getElementById("header-matiere").textContent = item.matiere_name;
+                                document.getElementById("header-matiere-icon").src = item.icon_src;
+                            }
+                        });
+                    }).catch(error => {
+                        console.error('Error:', error);
+                    });
+
+            </script>
+
             <div class="menu">
-                <button class="menu-right" onclick="hide_show()"><img
+                <button class="menu-right" onclick="hide_show()"><img id="button-settings"
                         src="https://cdn-icons-png.flaticon.com/512/2115/2115216.png"></button>
+            </div>
         </nav>
         </div>
         <div id="settings" style="opacity: 0; display: none;">
             <div>
                 <p>Color</p>
-                <ul class="settings-colors">
-                    <li><button class="diagonal-button style1" onclick="style1()"></button></li>
-                    <li><button class=" diagonal-button style2" onclick="style2()"></button></li>
-                    <li><button class=" diagonal-button style3" onclick="style3()"></button></li>
-                    <li><button class="diagonal-button style4" onclick="style4()"></button></li>
-                    <li><button class=" diagonal-button style5" onclick="style5()"></button></li>
-                    <li><button class=" diagonal-button style6" onclick="style6()"></button></li>
-                    <li><button class="diagonal-button style7" onclick="style7()"></button></li>
-                    <li><button class=" diagonal-button style8" onclick="style8()"></button></li>
-                    <li><button class=" diagonal-button style9" onclick="style9()"></button></li>
+                <ul class="settings-colors" id="style_list">
+
                 </ul>
+
+                <script>
+                    fetch('../static/json/settings_color.json')
+                        .then(response => response.json())
+                        .then(data => {
+                            data.forEach(item => {
+                                const element_id = item.color_id;
+
+                                const liElement = document.createElement("li");
+
+                                const buttonElement = document.createElement("button");
+                                const class_element = "diagonal-button style" + parseInt(element_id, 10);
+                                buttonElement.className = class_element
+                                buttonElement.onclick = function () {
+                                    style_change(element_id);
+                                };
+
+                                liElement.appendChild(buttonElement);
+
+                                const ulElement = document.getElementById("style_list");
+                                ulElement.appendChild(liElement);
+
+                            });
+                        })
+                        .catch(error => {
+                            console.error('Une erreur s\'est produite lors de la lecture du fichier JSON :', error);
+                        });
+                </script>
             </div>
             <div>
                 <p>Angles</p>
@@ -61,39 +105,11 @@
 
 
     </div>
-    <main style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-
-        <section class="container-select-matiere" id="container-select-matiere">
-
-        </section>
+    <main
+        style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 10vh;">
 
 
-        <script>
-
-            fetch("../static/json/matiere.json")
-                .then(response => response.json())
-                .then(data => {
-                    const container = document.getElementById('container-select-matiere');
-
-                    data.forEach((item, index) => {
-                        const matiereButton = document.createElement('button');
-                        matiereButton.classList.add('box-matiere', `matiere-${index}`);
-                        if (index == 0) {
-                            matiereButton.classList.add('selected-img');
-                        }
-                        matiereButton.textContent = item.matiere_name;
-                        matiereButton.setAttribute('onclick', `select_matiere(${index})`);
-
-                        container.appendChild(matiereButton);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-
-        </script>
-
-        <div class="main-create-container">
+        <div class="main-create-container" id="main-container">
             <div class="toggle-container">
                 <button class="toggle-option selected" onclick="toggleSelection(this)">Cours</button>
                 <button class="toggle-option" onclick="toggleSelection(this)">Interro</button>
@@ -101,18 +117,17 @@
 
             <script>
                 function toggleSelection(button) {
-                    // Supprimer la classe "selected" de tous les boutons
                     var buttons = document.getElementsByClassName("toggle-option");
                     for (var i = 0; i < buttons.length; i++) {
                         buttons[i].classList.remove("selected");
                     }
 
-                    // Ajouter la classe "selected" uniquement au bouton cliqué
                     button.classList.add("selected");
                 }
             </script>
 
-            <h3 class="color-opposite"> Cours Box </h3>
+            <h3 class="color-opposite"> Cours Box <img src="https://cdn-icons-png.flaticon.com/512/1350/1350387.png ">
+            </h3>
 
             <div class="element-create-part">
 
@@ -126,9 +141,9 @@
                 <br>
 
                 <div class="input-create-container">
-                    <h4 class="color-opposite">Titre : </h4>
+                    <h4 class="color-opposite"> Titre : </h4>
                     <div class="input-container"><input placeholder="ex: Cours Dérivé (chapitre 1)"
-                            id="create-input-title-box" class="input color-opposite" name="text" type="text">
+                            id="create-input-title-box" class="input" name="text" type="text">
                     </div>
                 </div>
 
@@ -136,7 +151,7 @@
                     <h4 class="color-opposite">Icon url : </h4>
                     <div class="input-container "><input
                             placeholder="ex: https://cdn-icons-png.flaticon.com/512/5422/5422388.png"
-                            id="create-input-icon-box" class="input color-opposite" name="text" type="text">
+                            id="create-input-icon-box" class="input" name="text" type="text">
                     </div>
 
                 </div>
@@ -174,7 +189,7 @@
                     });
 
                     // Récupérer tous les boutons
-                    const buttons = document.querySelectorAll("button");
+                    const buttons = document.querySelectorAll(".icon-proposale-button");
 
                     // Ajouter un gestionnaire d'événement "click" à chaque bouton
                     buttons.forEach(button => {
@@ -192,7 +207,7 @@
 
                     <h4 class="color-opposite">Mot clé : </h4>
                     <div class="input-container"><input placeholder="ex: Math ,Derive" id="create-input-keyword"
-                            class="input color-opposite" name="text" type="text">
+                            class="input" name="text" type="text">
 
                     </div>
                 </div>
@@ -202,60 +217,82 @@
 
                 </ul>
 
-                <p class="color-opposite" style="visibility: hidden;" id="empty-keywords"> Aucun mot clé
+                <p style="visibility: hidden;" id="empty-keywords" class="color-opposite"> Aucun mot clé
                 </p>
 
-                <p class="color-opposite" id="alert-text"
-                    style="visibility: hidden; color: var(--text-color); font-style: italic;">⚠
+                <p id="alert-text" style="visibility: hidden; color: var(--text-color); font-style: italic;"
+                    class="color-opposite">⚠
                     Certain
                     mots peuvent être
                     modifier pour
-                    faciliter la recherche plus tard
+                    faciliter la recherche plus tard (si vous les tapez comme précédement ils seront trouvé)
                 </p>
             </div>
+
         </div>
 
-        <div class="main-create-container" style="margin-top: 0vh; margin-bottom: 10vh;">
 
-            <h3> Cours Box </h3>
-            <div class="element-create-part">
 
-                <a class="box-single show box-single-demonstration">
-                    <div class="box-num">1</div>
-                    <h4 id="titre-demonstration-box">Titre</h4>
-                    <div class="box-icon-container"><img id="icon-demonstration-box"
-                            src="https://cdn-icons-png.flaticon.com/512/5181/5181979.png" class="box-icon"></div>
-                </a>
 
-                <br>
-                <div class="input-create-container">
+        </div>
 
-                    <h4>Titre : </h4>
-                    <div class="input-container "><input placeholder="ex: Cours Dérivé (chapitre 1)"
-                            id="create-input-title-box" class="input" name="text" type="text">
-
+        <div class="add-cours">
+            <button id="button-add-cours" onclick="showlist()">
+                Ajouter du contenu au cour <img src=" https://cdn-icons-png.flaticon.com/512/2985/2985150.png ">
+            </button>
+            <ul id="list-add-cours" style="visibility: hidden;">
+                <button onclick="create_element(1)"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png ">
+                    <div>Youtube <img src="https://cdn-icons-png.flaticon.com/512/3670/3670147.png "></div>
+                </button>
+                <button onclick="create_element(2)"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png ">
+                    <div>Vidéo <img src="   https://cdn-icons-png.flaticon.com/512/3074/3074767.png "></div>
+                </button>
+                <button onclick="create_element(3)"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png ">
+                    <div>Audio <img src="   https://cdn-icons-png.flaticon.com/512/4349/4349708.png "></div>
+                </button>
+                <button onclick="create_element(4)"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png ">
+                    <div>Texte <img src="    https://cdn-icons-png.flaticon.com/512/4021/4021726.png "></div>
+                </button>
+                <button onclick="create_element(5)"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png ">
+                    <div>Image Verticale <img src="   https://cdn-icons-png.flaticon.com/512/3342/3342203.png ">
                     </div>
-                </div>
-
-                <div class="input-create-container">
-
-                    <h4>Icon url : </h4>
-                    <div class="input-container "><input
-                            placeholder="ex: https://cdn-icons-png.flaticon.com/512/5422/5422388.png"
-                            id="create-input-icon-box" class="input" name="text" type="text">
-
+                </button>
+                <button onclick="create_element(6)"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828919.png ">
+                    <div>Image Horizontale <img src="   https://cdn-icons-png.flaticon.com/512/1829/1829586.png ">
                     </div>
-                </div>
+                </button>
+            </ul>
 
-            </div>
+            <script>
+                var list_shown = false;
+
+                function showlist() {
+                    if (list_shown == false) {
+                        document.getElementById("list-add-cours").style.visibility = "visible";
+                        document.getElementById("button-add-cours").style.borderBottomLeftRadius = "0px";
+                        document.getElementById("button-add-cours").style.borderBottomRightRadius = "0px";
+                        list_shown = true;
+                    } else {
+                        document.getElementById("list-add-cours").style.visibility = "hidden";
+                        document.getElementById("button-add-cours").style.borderBottomLeftRadius = "5px";
+                        document.getElementById("button-add-cours").style.borderBottomRightRadius = "5px";
+                        list_shown = false;
+                    }
+                }
+            </script>
         </div>
     </main>
-
-
-
 </body>
 
+<script src="../static/javascript/create_json_cour.js"></script>
 <script src="../static/javascript/create.js"></script>
+<script src="../static/javascript/create_element/create_youtube.js"></script>
+<script src="../static/javascript/create_element/create_video.js"></script>
+<script src="../static/javascript/create_element/create_audio.js"></script>
+<script src="../static/javascript/create_element/create_texte.js"></script>
+<script src="../static/javascript/create_element/create_imageV.js"></script>
+<script src="../static/javascript/create_element/create_imageH.js"></script>
+<script src="../static/javascript/create_elements.js"></script>
 <script src="../static/javascript/settings.js"></script>
 
 

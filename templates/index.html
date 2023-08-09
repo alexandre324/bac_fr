@@ -16,24 +16,44 @@
         <nav>
             <h3 class="header-title">Terminale</h3>
             <div class="menu">
-                <button class="menu-right" onclick="hide_show()"><img
+                <button class="menu-right" onclick="hide_show()"><img id="button-settings"
                         src="   https://cdn-icons-png.flaticon.com/512/2115/2115216.png "></button>
         </nav>
         </div>
         <div id="settings" style="opacity: 0;">
             <div>
                 <p>Color</p>
-                <ul class="settings-colors">
-                    <li><button class="diagonal-button style1" onclick="style1()"></button></li>
-                    <li><button class=" diagonal-button style2" onclick="style2()"></button></li>
-                    <li><button class=" diagonal-button style3" onclick="style3()"></button></li>
-                    <li><button class="diagonal-button style4" onclick="style4()"></button></li>
-                    <li><button class=" diagonal-button style5" onclick="style5()"></button></li>
-                    <li><button class=" diagonal-button style6" onclick="style6()"></button></li>
-                    <li><button class="diagonal-button style7" onclick="style7()"></button></li>
-                    <li><button class=" diagonal-button style8" onclick="style8()"></button></li>
-                    <li><button class=" diagonal-button style9" onclick="style9()"></button></li>
+                <ul class="settings-colors" id="style_list">
+
                 </ul>
+
+                <script>
+                    fetch('../static/json/settings_color.json')
+                        .then(response => response.json())
+                        .then(data => {
+                            data.forEach(item => {
+                                const element_id = item.color_id;
+
+                                const liElement = document.createElement("li");
+
+                                const buttonElement = document.createElement("button");
+                                const class_element = "diagonal-button style" + parseInt(element_id, 10);
+                                buttonElement.className = class_element
+                                buttonElement.onclick = function () {
+                                    style_change(element_id);
+                                };
+
+                                liElement.appendChild(buttonElement);
+
+                                const ulElement = document.getElementById("style_list");
+                                ulElement.appendChild(liElement);
+
+                            });
+                        })
+                        .catch(error => {
+                            console.error('Une erreur s\'est produite lors de la lecture du fichier JSON :', error);
+                        });
+                </script>
             </div>
             <div>
                 <p>Angles</p>
@@ -47,44 +67,125 @@
         </div>
     </header>
     <main>
-        <section class="container" id="container">
+        <div class="container" id="container">
 
-        </section>
+        </div>
 
-        <script>
+    </main>
+    <div class="div-create-container" id="div-create-container">
+        <button onclick="load_matiere_choice()">
+            <p>Create</p> <img src="https://cdn-icons-png.flaticon.com/512/6001/6001933.png">
+        </button>
+    </div>
 
-            fetch("../static/json/matiere.json")
-                .then(response => response.json())
+    <div id="container_choose_matiere_to_create" style="display: none;">
+        <div id="header-choice-matiere">
+            <h3>Matières: </h3>
+            <button onclick="close_matiere_choice()"><img
+                    src="https://cdn-icons-png.flaticon.com/512/2976/2976286.png "></button>
+        </div>
+        <div id="choose_matiere_to_create">
+
+        </div>
+    </div>
+
+
+    <script>
+
+        fetch("../static/json/matiere.json")
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('container');
+
+                data.forEach((item, index) => {
+                    const matiereLink = document.createElement('a');
+                    matiereLink.classList = 'box box_matiere_opacity';
+                    matiereLink.href = `/matiere?matiere=${index + 1}`;
+
+                    const matiereImage = document.createElement('img');
+                    matiereImage.src = item.image_src;
+                    matiereLink.appendChild(matiereImage);
+
+                    const matiereName = document.createElement('p');
+                    matiereName.textContent = item.matiere_name;
+                    matiereLink.appendChild(matiereName);
+
+                    container.appendChild(matiereLink);
+                });
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+
+        function close_matiere_choice() {
+            document.getElementById("container_choose_matiere_to_create").style.display = "none";
+            document.getElementById("div-create-container").style.display = "flex";
+
+            var sectionElement = document.getElementById("container");
+
+            if (sectionElement) {
+                var childElements = sectionElement.querySelectorAll('a');
+
+                for (var i = 0; i < childElements.length; i++) {
+                    var element = childElements[i];
+                    element.style.opacity = "1";
+                }
+            } else {
+                console.log("Section element not found.");
+            }
+        }
+
+        function load_matiere_choice() {
+            document.getElementById("container_choose_matiere_to_create").style.display = "flex";
+            document.getElementById("div-create-container").style.display = "none";
+
+            var sectionElement = document.getElementById("container");
+            console.log(sectionElement);
+
+            if (sectionElement) {
+                var childElements = sectionElement.querySelectorAll('a');
+
+                for (var i = 0; i < childElements.length; i++) {
+                    var element = childElements[i];
+                    element.style.opacity = "0.4";
+                }
+            } else {
+                console.log("Section element not found.");
+            }
+
+
+            fetch("../static/json/matiere.json").then(response => response.json())
                 .then(data => {
                     const container = document.getElementById('container');
+                    const containerElement = document.getElementById('choose_matiere_to_create');
+
+                    if (containerElement.textContent.trim() === "" && containerElement.children.length === 0) {
+
+                        data.forEach((item, index) => {
+                            const linkElement = document.createElement('a');
+                            linkElement.href = "/create?matiere=" + index;
+
+                            const pElement = document.createElement('p');
+                            pElement.textContent = item.matiere_name;
+                            linkElement.appendChild(pElement);
+
+                            const imgElement = document.createElement('img');
+                            imgElement.src = item.icon_src;
+                            linkElement.appendChild(imgElement);
 
 
+                            containerElement.appendChild(linkElement);
 
-                    data.forEach((item, index) => {
-                        const matiereLink = document.createElement('a');
-                        matiereLink.classList.add('box');
-                        matiereLink.href = `/matiere?matiere=${index + 1}`;
-
-                        const matiereImage = document.createElement('img');
-                        matiereImage.src = item.image_src;
-                        matiereLink.appendChild(matiereImage);
-
-                        const matiereName = document.createElement('p');
-                        matiereName.textContent = item.matiere_name;
-                        matiereLink.appendChild(matiereName);
-
-                        container.appendChild(matiereLink);
-                    });
+                        });
+                    }
                 }).catch(error => {
                     console.error('Error:', error);
                 });
-        </script>
-    </main>
-    <div class="div-create-container">
-        <a href="/create">
-            <p>Create</p> <img src="https://cdn-icons-png.flaticon.com/512/6001/6001933.png">
-        </a>
-    </div>
+        }
+
+
+
+    </script>
+
 </body>
 <script>
     var myVariable1 = localStorage.getItem("style_color_id");
@@ -102,5 +203,7 @@
 </script>
 
 <script src="../static/javascript/settings.js"></script>
+<script src="../static/javascript/matiere_json_creator.js"></script>
+
 
 </html>

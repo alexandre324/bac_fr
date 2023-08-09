@@ -1,0 +1,90 @@
+[
+    {
+        "color_id": 1,
+        "color_main": "rgb(223, 184, 184)",
+        "color_background": "rgb(211, 211, 233)",
+        "color_light": "rgb(240, 211, 211)",
+        "color_dark": "rgb(163, 135, 135)",
+        "color_text": "black"
+    },
+    {
+        "color_id": 2,
+        "color_main": "rgb(200, 200, 212)",
+        "color_background": "rgb(255, 255, 255)",
+        "color_light": "rgb(220, 220, 232)",
+        "color_dark": "#9c9cb5",
+        "color_text": "black"
+    },
+    {
+        "color_id": 3,
+        "color_main": "rgb(230, 161, 116)",
+        "color_background": "rgb(242, 239, 213)",
+        "color_light": "#e8bea2",
+        "color_dark": "#db7d3d",
+        "color_text": "black"
+    },
+    {
+        "color_id": 4,
+        "color_main": "#a65861",
+        "color_background": "rgb(235, 209, 212)",
+        "color_light": "#c27a82",
+        "color_dark": "#6e3138",
+        "color_text": "white"
+    },
+    {
+        "color_id": 5,
+        "color_main": "#bed1ed",
+        "color_background": "rgb(255, 255, 255)",
+        "color_light": "#c7d6eb",
+        "color_dark": "#99afcf",
+        "color_text": "black"
+    },
+    {
+        "color_id": 6,
+        "color_main": "#2b2a2a",
+        "color_background": "rgb(18, 17, 17)",
+        "color_light": "#403d3d",
+        "color_dark": "black",
+        "color_text": "white"
+    },
+    {
+        "color_id": 7,
+        "color_main": "#342b3b",
+        "color_background": "rgb(170, 156, 181)",
+        "color_light": "#483e4f",
+        "color_dark": "#000000",
+        "color_text": "white"
+    },
+    {
+        "color_id": 8,
+        "color_main": "#10795d",
+        "color_background": "rgb(228, 237, 235)",
+        "color_light": "#31a385",
+        "color_dark": "#0e4a3a",
+        "color_text": "white"
+    },
+    {
+        "color_id": 9,
+        "color_main": "rgb(245, 201, 228)",
+        "color_background": "rgb(247, 242, 245)",
+        "color_light": "#f7e1ef",
+        "color_dark": "#bd86a9",
+        "color_text": "black"
+    },
+    {
+        "color_id": 10,
+        "color_main": "rgb(43, 61, 87)",
+        "color_background": "rgb(243, 235, 245)",
+        "color_light": "#495e7a",
+        "color_dark": "#142338",
+        "color_text": "white"
+    },
+    {
+        "color_id": 11,
+        "color_main": "rgb(227, 152, 61)",
+        "color_background": "rgb(213, 232, 223)",
+        "color_light": "#e8af6b",
+        "color_dark": "#cc7c1d",
+        "color_text": "white"
+    }
+]

@@ -1,33 +1,16 @@
-show_settings = false
-
+var show_settings = false
 
 var settings_box = document.getElementById("settings");
 var elements = document.querySelectorAll(".box");
 var root = document.documentElement;
 
+settings_box.style.opacity = "0";
+settings_box.style.display = "none";
 
 var style_color_id = localStorage.getItem("style_color_id");
 var style_radius_id = localStorage.getItem("style_radius_id");
 
-if (style_color_id == "1") {
-    style1()
-} else if (style_color_id == "2") {
-    style2()
-} else if (style_color_id == "3") {
-    style3()
-} else if (style_color_id == "4") {
-    style4()
-} else if (style_color_id == "5") {
-    style5()
-} else if (style_color_id == "6") {
-    style6()
-} else if (style_color_id == "7") {
-    style7()
-} else if (style_color_id == "8") {
-    style8()
-} else if (style_color_id == "9") {
-    style9()
-}
+style_change(style_color_id)
 
 if (style_radius_id == "1") {
     radius1()
@@ -39,9 +22,19 @@ if (style_radius_id == "1") {
     radius4()
 }
 
-function hide_show(style_color, radius) {
-    change_text_color()
+document.addEventListener("click", function (event) {
+    const clickedElement = event.target;
+    const buttonElement = document.getElementById("button-settings");
+    const settings_box_2 = document.getElementById("settings");
 
+
+    if (clickedElement !== buttonElement && !settings_box_2.contains(clickedElement)) {
+        show_settings = false;
+        document.getElementById("settings").style.display = "none";
+    }
+});
+
+function hide_show(style_color, radius) {
     if (show_settings == false) {
         show_settings = true;
         settings_box.style.opacity = "1";
@@ -72,12 +65,15 @@ function hide_show(style_color, radius) {
             fleche_bas_settings[0].src = "../static/image/fleche_N_B.png";
             fleche_haut_settings[0].src = "../static/image/fleche_N_H.png";
         }
-
-
     } catch {
         console.log("Wrong page !")
     }
 
+    try {
+        change_text_color()
+    } catch {
+        console.log("no");
+    }
 }
 
 document.addEventListener('keydown', function (event) {
@@ -88,95 +84,84 @@ document.addEventListener('keydown', function (event) {
 });
 
 
-function style1() {
-    root.style.setProperty('--main-color', "rgb(223, 184, 184)");
-    root.style.setProperty('--background-color', "rgb(211, 211, 233)");
-    root.style.setProperty('--main-color-light', "rgb(240, 211, 211)");
-    root.style.setProperty('--main-color-dark', "rgb(163, 135, 135)");
-    root.style.setProperty('--text-color', "black");
-    localStorage.setItem("style_color_id", "1");
+
+
+function change_setting_button_color() {
+    fetch('../static/json/settings_color.json')
+        .then(response => response.json())
+        .then(data => {
+            // Parcourir les données
+            data.forEach(item => {
+                // Extraire l'ID et les valeurs de couleurs
+                const color_main = item.color_main;
+                const color_light = item.color_light;
+                const color_dark = item.color_dark;
+                const color_background = item.color_background;
+                const color_text = item.color_text;
+
+                const element_class = '.style' + item.color_id;
+                const elementWithClassStyle = document.querySelector(element_class);
+                const background_style = "linear-gradient(to bottom right, " + color_main + " 50%, " + color_background + " 50%)";
+                elementWithClassStyle.style.background = background_style;
+                elementWithClassStyle.classList.remove("diagonal-button-border");
+            });
+        })
+        .catch(error => {
+            console.error('Une erreur s\'est produite lors de la lecture du fichier JSON :', error);
+        });
+}
+
+
+function change_text_color_settings(bfColor) {
+    const text_color_new_2 = getOppositeColor(bfColor);
+
+    const elementsWithClass_2 = document.querySelectorAll('.color-opposite');
+
+    for (const element of elementsWithClass_2) {
+        element.style.color = text_color_new_2;
+    }
+}
+
+function style_change(style_type) {
+    change_setting_button_color()
+    fetch('../static/json/settings_color.json')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(item => {
+                const element_id = item.color_id;
+                const style_type_int = parseInt(style_type, 10);
+                const color_main = item.color_main;
+                const color_light = item.color_light;
+                const color_dark = item.color_dark;
+                const color_background = item.color_background;
+                const color_text = item.color_text;
+
+                if (style_type_int == element_id) {
+                    const element_class = '.style' + item.color_id;
+                    const elementWithClassStyle = document.querySelector(element_class);
+                    elementWithClassStyle.classList.add("diagonal-button-border");
+                    root.style.setProperty('--main-color', color_main);
+                    root.style.setProperty('--background-color', color_background);
+                    root.style.setProperty('--main-color-light', color_light);
+                    root.style.setProperty('--main-color-dark', color_dark);
+                    root.style.setProperty('--text-color', color_text);
+
+                    change_text_color_settings(color_background)
+
+                }
+
+            });
+        })
+        .catch(error => {
+            console.error('Une erreur s\'est produite lors de la lecture du fichier JSON :', error);
+        });
+
+
+    localStorage.setItem("style_color_id", style_type);
     hide_show(style_color_id, style_radius_id)
 }
 
-function style2() {
-    root.style.setProperty('--main-color', "rgb(200, 200, 212)");
-    root.style.setProperty('--background-color', "rgb(255, 255, 255)");
-    root.style.setProperty('--main-color-light', "rgb(220, 220, 232)");
-    root.style.setProperty('--main-color-dark', "#9c9cb5");
-    root.style.setProperty('--text-color', "black");
-    localStorage.setItem("style_color_id", "2");
-    hide_show(style_color_id, style_radius_id)
-}
-
-function style3() {
-    root.style.setProperty('--main-color', "rgb(230, 161, 116)");
-    root.style.setProperty('--background-color', "rgb(242, 239, 213)");
-    root.style.setProperty('--main-color-light', "#e8bea2");
-    root.style.setProperty('--main-color-dark', "#db7d3d");
-    root.style.setProperty('--text-color', "black");
-    localStorage.setItem("style_color_id", "3");
-    hide_show(style_color_id, style_radius_id)
-}
-
-function style4() {
-    root.style.setProperty('--main-color', "#a65861");
-    root.style.setProperty('--background-color', "rgb(235, 209, 212)");
-    root.style.setProperty('--main-color-light', "#c27a82");
-    root.style.setProperty('--main-color-dark', "#6e3138");
-    root.style.setProperty('--text-color', "white");
-    localStorage.setItem("style_color_id", "4");
-    hide_show(style_color_id, style_radius_id)
-}
-
-function style5() {
-    root.style.setProperty('--main-color', "#bed1ed");
-    root.style.setProperty('--background-color', "rgb(255, 255, 255)");
-    root.style.setProperty('--main-color-light', "#c7d6eb");
-    root.style.setProperty('--main-color-dark', "#99afcf");
-    root.style.setProperty('--text-color', "black");
-    localStorage.setItem("style_color_id", "5");
-    hide_show(style_color_id, style_radius_id)
-}
-
-function style6() {
-    root.style.setProperty('--main-color', "#2b2a2a");
-    root.style.setProperty('--background-color', "rgb(18, 17, 17)");
-    root.style.setProperty('--main-color-light', "#403d3d");
-    root.style.setProperty('--main-color-dark', "#121212");
-    root.style.setProperty('--text-color', "white");
-    localStorage.setItem("style_color_id", "6");
-    hide_show(style_color_id, style_radius_id)
-}
-
-function style7() {
-    root.style.setProperty('--main-color', "#342b3b");
-    root.style.setProperty('--background-color', "rgb(35, 27, 41)");
-    root.style.setProperty('--main-color-light', "#483e4f");
-    root.style.setProperty('--main-color-dark', "#000000");
-    root.style.setProperty('--text-color', "white");
-    localStorage.setItem("style_color_id", "7");
-    hide_show(style_color_id, style_radius_id)
-}
-
-function style8() {
-    root.style.setProperty('--main-color', "#10795d");
-    root.style.setProperty('--background-color', "rgb(228, 237, 235)");
-    root.style.setProperty('--main-color-light', "#31a385");
-    root.style.setProperty('--main-color-dark', "#0e4a3a");
-    root.style.setProperty('--text-color', "white");
-    localStorage.setItem("style_color_id", "8");
-    hide_show(style_color_id, style_radius_id)
-}
-
-function style9() {
-    root.style.setProperty('--main-color', "#f5c9e4");
-    root.style.setProperty('--background-color', "rgb(247, 242, 245)");
-    root.style.setProperty('--main-color-light', "#f7e1ef");
-    root.style.setProperty('--main-color-dark', "#bd86a9");
-    root.style.setProperty('--text-color', "black");
-    localStorage.setItem("style_color_id", "9");
-    hide_show(style_color_id, style_radius_id)
-}
+change_setting_button_color()
 
 function radius1() {
     root.style.setProperty('--main-border-radius', "5px");

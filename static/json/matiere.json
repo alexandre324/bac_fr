@@ -1,30 +1,37 @@
 [
     {
         "matiere_name": "Math",
-        "image_src": "https://img.freepik.com/vecteurs-premium/fond-tableau-mathematique-realiste_23-2148154055.jpg?w=2000"
+        "image_src": "https://img.freepik.com/vecteurs-premium/fond-tableau-mathematique-realiste_23-2148154055.jpg?w=2000",
+        "icon_src": "https://cdn-icons-png.flaticon.com/512/1739/1739515.png  "
     },
     {
         "matiere_name": "NSI",
-        "image_src": "https://uploads-ssl.webflow.com/5fe22d5483f21c0a223357f8/5fef37dfbc9ac22fb2a855d3_Webp.net-resizeimage.png"
+        "image_src": "https://uploads-ssl.webflow.com/5fe22d5483f21c0a223357f8/5fef37dfbc9ac22fb2a855d3_Webp.net-resizeimage.png",
+        "icon_src": "   https://cdn-icons-png.flaticon.com/512/1055/1055666.png "
     },
     {
         "matiere_name": "Histoire",
-        "image_src": " https://major-prepa.com/wp-content/uploads/2021/12/Introduction_histoire.jpg "
+        "image_src": " https://major-prepa.com/wp-content/uploads/2021/12/Introduction_histoire.jpg ",
+        "icon_src": "   https://cdn-icons-png.flaticon.com/512/2972/2972415.png "
     },
     {
         "matiere_name": "Philosophie",
-        "image_src": "https://img.over-blog-kiwi.com/0/87/36/68/20160905/ob_df7021_socrates.jpg"
+        "image_src": "https://img.over-blog-kiwi.com/0/87/36/68/20160905/ob_df7021_socrates.jpg",
+        "icon_src": "    https://cdn-icons-png.flaticon.com/512/2178/2178189.png "
     },
     {
         "matiere_name": "Anglais",
-        "image_src": "https://node01.flagstat.net/media/image/2829r.jpg"
+        "image_src": "https://node01.flagstat.net/media/image/2829r.jpg",
+        "icon_src": "     https://cdn-icons-png.flaticon.com/512/197/197374.png "
     },
     {
         "matiere_name": "Espagnole",
-        "image_src": "https://f.maformation.fr/edito/sites/3/2021/10/espagne.jpeg"
+        "image_src": "https://f.maformation.fr/edito/sites/3/2021/10/espagne.jpeg",
+        "icon_src": "     https://cdn-icons-png.flaticon.com/512/206/206724.png "
     },
     {
         "matiere_name": "E-S",
-        "image_src": "https://img.freepik.com/free-vector/hand-drawn-colorful-science-education-background_23-2148475858.jpg?w=2000"
+        "image_src": "https://img.freepik.com/free-vector/hand-drawn-colorful-science-education-background_23-2148475858.jpg?w=2000",
+        "icon_src": "     https://cdn-icons-png.flaticon.com/512/2821/2821637.png  "
     }
 ]
